@@ -1,10 +1,11 @@
 import sys
 from pathlib import Path
 
-# Add the src directory to the Python path
-sys.path.append(str(Path(__file__).parent / "src"))
+# Add the current directory to the Python path
+sys.path.append(str(Path(__file__).parent))
 
-from main import app  # This now imports from src/main.py
+# Import the app from src.main
+from src.main import app
 
 # For Vercel deployment
 handler = app
