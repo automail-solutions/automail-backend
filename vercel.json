@@ -1,31 +1,12 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "main.py",
-      "use": "@vercel/python",
-      "config": {
-        "pythonVersion": "3.12"
-      }
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/main.py"
-    }
-  ],
-  "env": {
-    "PYTHONPATH": "/var/task"
-  },
   "build": {
-    "env": {
-      "PYTHONPATH": "/var/task"
-    }
+    "src": "api/index.py",
+    "use": "@vercel/python"
   },
-  "buildCommand": "bash vercel_build.sh",
-  "outputDirectory": ".",
-  "regions": ["gru1"],
-  "public": false,
-  "cleanUrls": true
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.py"
+    }
+  ]
 }

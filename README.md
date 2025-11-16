@@ -1,22 +1,18 @@
-# Automail Solutions Backend
+# AutoMail Solutions - Backend API
 
-Sistema de classificação e resposta automática de emails usando IA com FastAPI.
+API backend para o projeto AutoMail Solutions, construída com FastAPI e implantada na Vercel.
 
 ## 📋 Descrição do Projeto
 
-API stateless que automatiza a leitura, classificação e sugestão de respostas para emails corporativos usando inteligência artificial. O sistema classifica emails em categorias predefinidas (Produtivo/Improdutivo) e sugere respostas contextualizadas.
+API para automação de emails corporativos, construída com FastAPI e implantada como uma função serverless na Vercel.
 
-## 🏗️ Arquitetura Implementada
-
-O projeto segue os princípios de **Clean Architecture** com separação em camadas:
+## 🏗️ Estrutura do Projeto
 
 ```
-src/
-├── domain/           # Entidades e regras de negócio
-├── application/      # Casos de uso e serviços
-├── infrastructure/   # Integrações externas (Groq API, NLP)
-├── presentation/     # Controllers e schemas (FastAPI)
-└── shared/          # Configurações e utilitários
+api/
+└── index.py          # Aplicação principal FastAPI
+
+```
 ```
 
 ### Características Stateless
@@ -77,7 +73,7 @@ ALLOWED_ORIGINS=*
 ## 🏃‍♂️ Como Executar Localmente
 
 ```bash
-uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
+uvicorn api.index:app --reload --host 0.0.0.0 --port 8000
 ```
 
 A aplicação estará disponível em: http://localhost:8000

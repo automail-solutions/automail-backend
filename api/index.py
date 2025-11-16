@@ -51,6 +51,3 @@ async def automail_exception_handler(request, exc):
 @app.get("/", include_in_schema=False)
 async def root():
     return {"message": "Automail Solutions API - Acesse /docs para documentação"}
-
-# For Vercel deployment
-handler = app
