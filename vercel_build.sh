@@ -1,15 +1,12 @@
 #!/bin/bash
 set -e
 
-# Upgrade pip and install dependencies
+# Atualiza o pip e instala as dependências
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
-# Install the package in development mode
-python -m pip install -e .
+# Instala o pacote em modo produção
+python -m pip install .
 
-# Create necessary directories
+# Cria diretórios necessários
 mkdir -p __pycache__
-
-# Create a .python-version file for Vercel
-echo "3.12.3" > .python-version

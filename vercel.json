@@ -5,15 +5,27 @@
       "src": "main.py",
       "use": "@vercel/python",
       "config": {
-        "pythonVersion": "3.12",
-        "installCommand": "bash vercel_build.sh"
+        "pythonVersion": "3.12"
       }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "main.py"
+      "dest": "/main.py"
     }
-  ]
+  ],
+  "env": {
+    "PYTHONPATH": "/var/task"
+  },
+  "build": {
+    "env": {
+      "PYTHONPATH": "/var/task"
+    }
+  },
+  "buildCommand": "bash vercel_build.sh",
+  "outputDirectory": ".",
+  "regions": ["gru1"],
+  "public": false,
+  "cleanUrls": true
 }
