@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from .presentation.api.routes import classify, health
+from .presentation.api.routes import classify, health, batch_classify
 from .shared.config import settings
 from .shared.exceptions import AutomailException
 
@@ -36,6 +36,7 @@ app.add_middleware(
 
 # Include routers
 app.include_router(classify.router)
+app.include_router(batch_classify.router)
 app.include_router(health.router)
 
 # Global exception handler

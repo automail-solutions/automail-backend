@@ -34,9 +34,24 @@ class GroqClient:
             content = response.choices[0].message.content
             lines = content.strip().split('\n')
             
-            category = lines[0].split(': ')[1] if len(lines) > 0 else "Produtivo"
-            confidence = float(lines[1].split(': ')[1]) if len(lines) > 1 else 0.8
-            suggested_response = lines[2].split(': ', 1)[1] if len(lines) > 2 else "Obrigado pelo contato."
+            category = "Produtivo"
+            confidence = 0.8
+            suggested_response = "Obrigado pelo contato."
+            
+            for line in lines:
+                if line.startswith("Categoria:"):
+                    category = line.split(': ', 1)[1].strip()
+                elif line.startswith("Confiança:"):
+                    try:
+                        confidence = float(line.split(': ', 1)[1].strip())
+                    except:
+                        confidence = 0.8
+                elif line.startswith("Resposta:"):
+                    # Captura toda a resposta, incluindo múltiplas linhas
+                    response_start = content.find("Resposta:")
+                    if response_start != -1:
+                        suggested_response = content[response_start + 10:].strip()
+                    break
             
             return category, confidence, suggested_response
             

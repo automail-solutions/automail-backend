@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Dict, Any
+from typing import Dict, Any, List, Union
 
 
 class EmailClassificationResponse(BaseModel):
@@ -35,3 +35,21 @@ class HealthCheckResponse(BaseModel):
 
 class ErrorResponse(BaseModel):
     detail: str = Field(description="Detalhes do erro", examples=["Erro interno do servidor"])
+
+
+class BatchFileResult(BaseModel):
+    filename: str = Field(description="Nome do arquivo processado")
+    status: str = Field(description="Status do processamento", examples=["success", "error"])
+    category: Union[str, None] = Field(default=None, description="Categoria do email")
+    confidence: Union[float, None] = Field(default=None, description="Confiança da classificação")
+    suggested_response: Union[str, None] = Field(default=None, description="Resposta sugerida")
+    processing_time: Union[float, None] = Field(default=None, description="Tempo de processamento")
+    error: Union[str, None] = Field(default=None, description="Mensagem de erro")
+
+
+class BatchClassificationResponse(BaseModel):
+    total_files: int = Field(description="Total de arquivos processados")
+    successful: int = Field(description="Arquivos processados com sucesso")
+    failed: int = Field(description="Arquivos com erro")
+    results: List[BatchFileResult] = Field(description="Resultados detalhados")
+    metadata: Dict[str, Any] = Field(description="Metadados do processamento")

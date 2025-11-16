@@ -192,6 +192,7 @@ pip install -r requirements.txt
 | Método | Endpoint | Descrição |
 |--------|----------|-----------|
 | POST | `/api/v1/classify` | Classifica email e sugere resposta |
+| POST | `/api/v1/classify/batch` | Classifica múltiplos emails de arquivos (.txt/.pdf) |
 | GET | `/health` | Verifica saúde da aplicação |
 | GET | `/docs` | Documentação Swagger UI |
 | GET | `/openapi.json` | Especificação OpenAPI |
