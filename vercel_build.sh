@@ -1,8 +1,15 @@
 #!/bin/bash
 set -e
 
-# Install Python dependencies
+# Upgrade pip and install dependencies
+python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
-# Create __pycache__ directory if it doesn't exist
-python -m mkdir -p __pycache__
+# Install the package in development mode
+python -m pip install -e .
+
+# Create necessary directories
+mkdir -p __pycache__
+
+# Create a .python-version file for Vercel
+echo "3.12.3" > .python-version
